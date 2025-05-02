@@ -1,0 +1,7 @@
+botbuilder-integration-aiohttp>=4.15.0
+gunicorn
+aiohttp
+faiss-cpu
+sentence-transformers
+openai
+python-dotenv
