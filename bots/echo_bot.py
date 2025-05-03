@@ -8,7 +8,7 @@ class EchoBot(ActivityHandler):
         self.config = config
         self.client = AzureOpenAI(
             api_key=config.OPENAI_API_KEY,
-            api_version="2024-12-01-preview",
+            api_version=config.OPENAI_API_VERSION,
             azure_endpoint=config.OPENAI_ENDPOINT
         )
         self.retriever = FAISSRetriever("rag/corpus.txt")
@@ -19,11 +19,6 @@ class EchoBot(ActivityHandler):
         for member in members_added:
             if member.id != turn_context.activity.recipient.id:
                 await turn_context.send_activity("Hello and welcome!")
-
-    # async def on_message_activity(self, turn_context: TurnContext):
-    #     return await turn_context.send_activity(
-    #         MessageFactory.text(f"Echo: {turn_context.activity.text}")
-    #     )
     
     async def on_message_activity(self, turn_context: TurnContext):
         user_input = turn_context.activity.text
